@@ -223,8 +223,7 @@ if (strlen($_SESSION['login']) == 0) {
                                         }
 
 
-                                        function opened($id_1, $conn, $chats)
-                                        {
+                                        function opened($id_1, $conn, $chats) {
                                             foreach ($chats as $chat) {
                                                 if ($chat['opened'] == 0) {
                                                     $opened = 1;
@@ -242,25 +241,19 @@ if (strlen($_SESSION['login']) == 0) {
                                             }
                                         }
 
-                                        function getChats($id_1, $id_2, $con)
-                                        {
-
-                                            // Escape the input parameters to prevent SQL injection
+                                        function getChats($id_1, $id_2, $con) {
                                             $id_1 = $con->real_escape_string($id_1);
                                             $id_2 = $con->real_escape_string($id_2);
-
-                                            // Construct the SQL query
                                             $sql = "SELECT * FROM chats WHERE (from_id = $id_1 AND to_id = $id_2) OR (to_id = $id_1 AND from_id = $id_2) ORDER BY chat_id ASC";
                                             $result  = $con->query($sql);
-                                            if ($result->nums_rows > 0) {
+                                            if ($result->num_rows > 0) {  // Fix here
                                                 $chats = $result->fetch_all(MYSQLI_ASSOC);
                                                 return $chats;
                                             } else {
-                                                $chats = [];
-                                                return $chats;
+                                                return [];
                                             }
                                         }
-
+                                        
                                         $chats = getChats($_SESSION['id'], $admin_id, $con);
 
 
@@ -305,11 +298,12 @@ if (strlen($_SESSION['login']) == 0) {
 
                                             <form class="typing-area" id="form_message">
                                                 <input type="text" id="incoming_id" name="incoming_id" value="<?= $sender_id ?>" hidden>
-                                                <!-- <input type="text" name="message" id="message" placeholder="Type a message here..." autocomplete="off"> -->
+                                              
                                                 <textarea name="message" id="message" class="form-control"></textarea>
 
                                                 <button type="submit" id="sendBtn">Send</button>
                                             </form>
+
                                         </div>
                                     </tbody>
                                 </table>

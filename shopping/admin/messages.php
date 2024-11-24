@@ -92,8 +92,9 @@ if (strlen($_SESSION['alogin']) == 0) {
 														$result2 = mysqli_stmt_get_result($stmt2);
 														$allConversations = mysqli_fetch_all($result2, MYSQLI_ASSOC);
 
-														# Pushing the data into the array 
-														array_push($user_data, $allConversations[0]);
+														if (!empty($allConversations)) {
+															array_push($user_data, $allConversations[0]);
+														}
 													}
 
 													return $user_data;
@@ -144,7 +145,8 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 										
 											#$user = getUser($_SESSION['id'], $con);
-											$conversations = getConversation($_SESSION['id'], $con);
+											$user = $_SESSION['id'];
+											$conversations = getConversation($user, $con);
 
 
 											?>

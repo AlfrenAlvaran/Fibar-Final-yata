@@ -5,6 +5,44 @@ if (strlen($_SESSION['alogin']) == 0) {
 	header('location:index.php');
 } else {
 
+	// if (isset($_POST['submit'])) {
+	// 	$category = $_POST['category'];
+	// 	$subcat = $_POST['subcategory'];
+	// 	$productname = $_POST['productName'];
+	// 	$productcompany = $_POST['productCompany'];
+	// 	$productprice = $_POST['productprice'];
+	// 	$productpricebd = $_POST['productpricebd'];
+	// 	$productdescription = $_POST['productDescription'];
+	// 	$productscharge = $_POST['productShippingcharge'];
+	// 	$productavailability = $_POST['productAvailability'];
+	// 	$productimage1 = $_FILES["productimage1"]["name"];
+	// 	$productimage2 = $_FILES["productimage2"]["name"];
+	// 	$productimage3 = $_FILES["productimage3"]["name"];
+	// 	//for getting product id
+	// 	$query = mysqli_query($con, "select max(id) as pid from products");
+	// 	$result = mysqli_fetch_array($query);
+	// 	$productid = $result['pid'] + 1;
+	// 	$dir = "productimages/$productid";
+	// 	if (!is_dir($dir)) {
+	// 		mkdir($dir, 0777, true); // Ensure directory is created with write permissions
+	// 	}
+
+	// 	// Move uploaded files to the product's directory
+	// 	move_uploaded_file($_FILES["productimage1"]["tmp_name"], "$dir/" . $_FILES["productimage1"]["name"]);
+	// 	move_uploaded_file($_FILES["productimage2"]["tmp_name"], "$dir/" . $_FILES["productimage2"]["name"]);
+	// 	move_uploaded_file($_FILES["productimage3"]["tmp_name"], "$dir/" . $_FILES["productimage3"]["name"]);
+
+	// 	echo "<pre>";
+	// 	print_r($_POST);
+	// 	print_r($_FILES);
+	// 	echo "</pre>";
+
+
+	// 	// Store the relative path in the database for better file referencing
+	// 	$sql = mysqli_query($con, "INSERT INTO products (category, subCategory, productName, productCompany, productPrice, productDescription, shippingCharge, productAvailability, productImage1, productImage2, productImage3, productPriceBeforeDiscount) VALUES ('$category', '$subcat', '$productname', '$productcompany', '$productprice', '$productdescription', '$productscharge', '$productavailability', '$productimage1', '$productimage2', '$productimage3', '$productpricebd')");
+	// 	$_SESSION['msg'] = "Product Inserted Successfully !!";
+	// }
+
 	if (isset($_POST['submit'])) {
 		$category = $_POST['category'];
 		$subcat = $_POST['subcategory'];
@@ -15,29 +53,72 @@ if (strlen($_SESSION['alogin']) == 0) {
 		$productdescription = $_POST['productDescription'];
 		$productscharge = $_POST['productShippingcharge'];
 		$productavailability = $_POST['productAvailability'];
-		$productimage1 = $_FILES["productimage1"]["name"];
-		$productimage2 = $_FILES["productimage2"]["name"];
-		$productimage3 = $_FILES["productimage3"]["name"];
-		//for getting product id
-		$query = mysqli_query($con, "select max(id) as pid from products");
-		$result = mysqli_fetch_array($query);
-		$productid = $result['pid'] + 1;
-		$dir = "productimages/$productid";
-		if (!is_dir($dir)) {
-			mkdir($dir, 0777, true); // Ensure directory is created with write permissions
+		$allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+
+		// Validate and upload images
+		$uploadedImages = [];
+		for ($i = 1; $i <= 3; $i++) {
+			$inputName = "productimage$i";
+			if (!empty($_FILES[$inputName]['name'])) {
+				$fileName = $_FILES[$inputName]['name'];
+				$fileTmp = $_FILES[$inputName]['tmp_name'];
+				$fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+
+				if (in_array($fileExtension, $allowedExtensions)) {
+					$uploadedImages[] = $fileName;
+				} else {
+					$_SESSION['msg'] = "Invalid file format for image $i!";
+					header("Location: {$_SERVER['PHP_SELF']}");
+					exit();
+				}
+			}
 		}
 
-		// Move uploaded files to the product's directory
-		move_uploaded_file($_FILES["productimage1"]["tmp_name"], "$dir/" . $_FILES["productimage1"]["name"]);
-		move_uploaded_file($_FILES["productimage2"]["tmp_name"], "$dir/" . $_FILES["productimage2"]["name"]);
-		move_uploaded_file($_FILES["productimage3"]["tmp_name"], "$dir/" . $_FILES["productimage3"]["name"]);
+		$query = $con->query("SELECT MAX(id) AS pid FROM products");
+		$result = $query->fetch_assoc();
+		$productid = $result['pid'] + 1;
 
-		// Store the relative path in the database for better file referencing
-		$sql = mysqli_query($con, "INSERT INTO products (category, subCategory, productName, productCompany, productPrice, productDescription, shippingCharge, productAvailability, productImage1, productImage2, productImage3, productPriceBeforeDiscount) VALUES ('$category', '$subcat', '$productname', '$productcompany', '$productprice', '$productdescription', '$productscharge', '$productavailability', '$productimage1', '$productimage2', '$productimage3', '$productpricebd')");
-		$_SESSION['msg'] = "Product Inserted Successfully !!";
+		$dir = "productimages/$productid";
+		if (!is_dir($dir)) {
+			mkdir($dir, 0777, true);
+		}
+
+		
+		foreach ($uploadedImages as $key => $image) {
+			move_uploaded_file($_FILES["productimage" . ($key + 1)]['tmp_name'], "$dir/$image");
+		}
+		
+		$image1 = $uploadedImages[0] ?? null;
+		$image2 = $uploadedImages[1] ?? null;
+		$image3 = $uploadedImages[2] ?? null;
+
+		// Insert product into database
+		$stmt = $con->prepare("INSERT INTO products 
+    (category, subCategory, productName, productCompany, productPrice, productPriceBeforeDiscount, productDescription, shippingCharge, productAvailability, productImage1, productImage2, productImage3) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		$stmt->bind_param(
+			"iissddssssss",
+			$category,
+			$subcat,
+			$productname,
+			$productcompany,
+			$productprice,
+			$productpricebd,
+			$productdescription,
+			$productscharge,
+			$productavailability,
+			$image1,
+			$image2,
+			$image3
+		);
+
+		if ($stmt->execute()) {
+			$_SESSION['msg'] = "Product inserted successfully!";
+		} else {
+			$_SESSION['msg'] = "Error inserting product: " . $stmt->error;
+		}
+		$stmt->close();
 	}
-
-
 ?>
 	<!DOCTYPE html>
 	<html lang="en">

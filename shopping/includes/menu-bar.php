@@ -1,4 +1,4 @@
-<div class=" animate-dropdown">
+<div class="header-nav animate-dropdown" style="background-color: #000;">
     <div class="container">
         <div class="yamm navbar navbar-default" role="navigation">
             <div class="navbar-header">
@@ -14,7 +14,7 @@
                     <div class="nav-outer">
                         <ul class="nav navbar-nav">
                             <li class="active dropdown yamm-fw">
-                            <a href="index.php" data-hover="dropdown" class="dropdown-toggle" style="color: White; background-color: #007bff; padding: 10px 15px; text-decoration: none; border-radius: 5px; transition: background-color 0.3s;">Home</a>
+                            <a href="index.php" data-hover="dropdown" class="dropdown-toggle" >Home</a>
                             </li>
                             <?php $sql = mysqli_query($con, "select id,categoryName  from category limit 6");
                             while ($row = mysqli_fetch_array($sql)) {

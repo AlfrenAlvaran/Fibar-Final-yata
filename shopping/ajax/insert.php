@@ -42,10 +42,7 @@ if (isset($_SESSION['id'])) {
                 }
                 ?>
 
-                <p class="rtext align-self-end border rounded p-2 mb-1">
-                    <?=$message?>  
-                    <small class="d-block"><?=$time?></small>      
-                </p>
+               
 
                 <?php 
             }

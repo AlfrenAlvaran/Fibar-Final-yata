@@ -78,199 +78,173 @@ if (isset($_GET['action']) && $_GET['action'] == "add") {
 	</header>
 
 	<!-- ============================================== HEADER : END ============================================== -->
-	<div class="body-content outer-top-xs" id="top-banner-and-menu" 
-     style="background-color: white; padding: 15px; border: 1px solid #ccc; border-radius: 8px;">
-    <!-- Your content here -->
-</div>
-		<div class="container">
-			<div class="furniture-container homepage-container">
-				<div class="row">
+	<div class="body-content outer-top-xs" id="top-banner-and-menu"
+		style="background-color: white; padding: 15px; border: 1px solid #ccc; border-radius: 8px;">
+		<!-- Your content here -->
+	</div>
+	<div class="container">
+		<div class="furniture-container homepage-container">
+			<div class="row">
 
-					<div class="col-xs-12 col-sm-12 col-md-3 sidebar">
-						<!-- ================================== TOP NAVIGATION ================================== -->
-						<?php include('includes/side-menu.php'); ?>
-						<!-- ================================== TOP NAVIGATION : END ================================== -->
-					</div><!-- /.sidemenu-holder -->
+				<div class="col-xs-12 col-sm-12 col-md-3 sidebar">
+					<!-- ================================== TOP NAVIGATION ================================== -->
+					<?php include('includes/side-menu.php'); ?>
+					<!-- ================================== TOP NAVIGATION : END ================================== -->
+				</div><!-- /.sidemenu-holder -->
 
-					<div class="col-xs-12 col-sm-12 col-md-9 homebanner-holder">
-						<!-- ========================================== SECTION – HERO ========================================= -->
+				<div class="col-xs-12 col-sm-12 col-md-9 homebanner-holder">
+					<!-- ========================================== SECTION – HERO ========================================= -->
 
-					
-						<!-- ========================================= SECTION – HERO : END ========================================= -->
-						<!-- ============================================== INFO BOXES ============================================== -->
-						<div class="info-boxes wow fadeInUp">
-							<div class="info-boxes-inner">
-								<div class="row">
-									<div class="col-md-6 col-sm-4 col-lg-4">
-										<div class="info-box">
-											<div class="row">
-												<div class="col-xs-2">
-													<i class="icon fa fa-dollar"></i>
-												</div>
-												<div class="col-xs-10">
-												<h4 class="info-box-heading blue" style="font-size: 4rem; color: blue; text-align: center; margin: 5px 0;">money back</h4>												</div>
-											</div>
-											<h6 class="text">30 Day Money Back Guarantee.</h6>
-										</div>
-									</div><!-- .col -->
+					<div id="hero" class="homepage-slider3">
+						<div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">
+							<div class="full-width-slider">
+								<div class="item" style="background-image: url(assets/images/sliders/s3.jfif);">
+									<!-- /.container-fluid -->
+								</div><!-- /.item -->
+							</div><!-- /.full-width-slider -->
 
-									<div class="hidden-md col-sm-4 col-lg-4">
-										<div class="info-box">
-											<div class="row">
-												<div class="col-xs-2">
-													<i class="icon fa fa-truck"></i>
-												</div>
-												<div class="col-xs-10">
-													<h4 class="info-box-heading orange">free shipping</h4>
-												</div>
-											</div>
-											<h6 class="text">free ship-on oder over Rs. 600.00</h6>
-										</div>
-									</div><!-- .col -->
+							<div class="full-width-slider">
+								<div class="item full-width-slider" style="background-image: url(assets/images/sliders/s2.jfif);">
+								</div><!-- /.item -->
+							</div><!-- /.full-width-slider -->
 
-									<div class="col-md-6 col-sm-4 col-lg-4">
-										<div class="info-box">
-											<div class="row">
-												<div class="col-xs-2">
-													<i class="icon fa fa-gift"></i>
-												</div>
-												<div class="col-xs-10">
-													<h4 class="info-box-heading red">Special Sale</h4>
-												</div>
-											</div>
-											<h6 class="text">All items-sale up to 20% off </h6>
-										</div>
-									</div><!-- .col -->
-								</div><!-- /.row -->
-							</div><!-- /.info-boxes-inner -->
+						</div><!-- /.owl-carousel -->
+					</div>
+					<!-- ========================================= SECTION – HERO : END ========================================= -->
+					<!-- ============================================== INFO BOXES ============================================== -->
+				
+					<!-- ============================================== INFO BOXES : END ============================================== -->
+				</div><!-- /.homebanner-holder -->
 
-						</div><!-- /.info-boxes -->
-						<!-- ============================================== INFO BOXES : END ============================================== -->
-					</div><!-- /.homebanner-holder -->
+			</div><!-- /.row -->
 
-				</div><!-- /.row -->
-
-				<!-- ============================================== SCROLL TABS ============================================== -->
-				<div>
-					<div class="more-info-tab clearfix">
-					<h3 class="new-product-title pull-left" style="font-size: 2.5rem; color: Blue; margin: 20px 0; text-align: left;">All Products</h3>						<!-- 		<ul class="nav nav-tabs nav-tab-line pull-right" id="new-products-1">
+			<!-- ============================================== SCROLL TABS ============================================== -->
+			<div>
+				<div class="more-info-tab clearfix">
+					<h3 class="new-product-title pull-left" style="font-size: 2.5rem; color: #000; margin: 20px 0; text-align: left; font-weight: 700;">All Products</h3> <!-- 		<ul class="nav nav-tabs nav-tab-line pull-right" id="new-products-1">
 					<li class="active"><a href="#all" data-toggle="tab">All</a></li>
 					<li><a href="#books" data-toggle="tab">Books</a></li>
 					<li><a href="#furniture" data-toggle="tab">Furniture</a></li>
 				</ul> -->
-					</div>
-
-					<div class="tab-content outer-top-xs">
-						<div class="tab-pane in active" id="all">
-							<div class="product-slider">
-								<div class="owl-carousel home-owl-carousel custom-carousel owl-theme">
-									<?php
-									$ret = mysqli_query($con, "select * from products");
-									while ($row = mysqli_fetch_array($ret)) {
-										# code...
-
-
-									?>
-
-
-										<div class="item">
-											<div class="products">
-
-												<div class="product">
-													<div class="product-image">
-														<div class="image">
-															<a href="product-details.php?pid=<?php echo htmlentities($row['id']); ?>">
-																<img src="./admin/productimages/<?php echo htmlentities($row['id']); ?>/<?php echo htmlentities($row['productImage1']); ?>" data-echo="admin/productimages/<?php echo htmlentities($row['id']); ?>/<?php echo htmlentities($row['productImage1']); ?>" width="180" height="300" alt=""></a>
-														</div><!-- /.image -->
-
-
-													</div><!-- /.product-image -->
-
-
-													<div class="product-info text-left">
-														<h3 class="name"><a href="product-details.php?pid=<?php echo htmlentities($row['id']); ?>"><?php echo htmlentities($row['productName']); ?></a></h3>
-														<div class="rating rateit-small"></div>
-														<div class="description"></div>
-
-														<div class="product-price">
-															<span class="price">
-															₱
-															<?php echo htmlentities($row['productPrice']); ?> </span>
-															<span class="price-before-discount">Rs.<?php echo htmlentities($row['productPriceBeforeDiscount']); ?> </span>
-
-														</div><!-- /.product-price -->
-
-													</div><!-- /.product-info -->
-													<?php if ($row['productAvailability'] == 'In Stock') { ?>
-														<div class="action" style="margin: 10px 0; text-align: none;">
-    <a href="index.php?page=product&action=add&id=<?php echo $row['id']; ?>" class="lnk btn btn-info" style="text-decoration: none; background-color: #007bff; color: white; padding: 5px 10px; border-radius: 5px; transition: background-color 0.3s;">
-        Add to Cart
-    </a>
-</div>													<?php } else { ?>
-														<div class="action" style="color:red">Out of Stock</div>
-													<?php } ?>
-												</div><!-- /.product -->
-
-											</div><!-- /.products -->
-										</div><!-- /.item -->
-									<?php } ?>
-
-								</div><!-- /.home-owl-carousel -->
-							</div><!-- /.product-slider -->
-						</div>
-
-
-
-					</div>
 				</div>
 
+				<div class="tab-content outer-top-xs">
+					<div class="tab-pane in active" id="all">
+						<div class="product-slider">
+							<div class="owl-carousel home-owl-carousel custom-carousel owl-theme">
+								<?php
+								$ret = mysqli_query($con, "select * from products");
+								while ($row = mysqli_fetch_array($ret)) {
+									# code...
 
-				<!-- ============================================== TABS ============================================== -->
+
+								?>
 
 
-				<hr />
+									<div class="item">
+										<div class="products">
 
-				<!-- <?php #include('includes/brands-slider.php'); ?> -->
+											<div class="product">
+												<div class="product-image">
+													<div class="image">
+														<a href="product-details.php?pid=<?php echo htmlentities($row['id']); ?>">
+															<img
+																src="admin/productimages/<?php echo htmlentities($row['id']); ?>/<?php echo htmlentities($row['productImage1']); ?>"
+																width="180" height="300"
+																alt="Product Image">
+
+														</a>
+													</div><!-- /.image -->
+
+
+												</div><!-- /.product-image -->
+
+
+												<div class="product-info text-left">
+													<h3 class="name"><a href="product-details.php?pid=<?php echo htmlentities($row['id']); ?>"><?php echo htmlentities($row['productName']); ?></a></h3>
+													<div class="rating rateit-small"></div>
+													<div class="description"></div>
+
+													<div class="product-price">
+														<span class="price">
+															₱
+															<?php echo htmlentities($row['productPrice']); ?> </span>
+														<span class="price-before-discount">Rs.<?php echo htmlentities($row['productPriceBeforeDiscount']); ?> </span>
+
+													</div><!-- /.product-price -->
+
+												</div><!-- /.product-info -->
+												<?php if ($row['productAvailability'] == 'In Stock') { ?>
+													<div class="action" style="margin: 10px 0; text-align: none;">
+														<a href="index.php?page=product&action=add&id=<?php echo $row['id']; ?>" class="lnk btn btn-info" style="text-decoration: none; background-color: #007bff; color: white; padding: 5px 10px; border-radius: 5px; transition: background-color 0.3s;">
+															Add to Cart
+														</a>
+													</div> <?php } else { ?>
+													<div class="action" style="color:red">Out of Stock</div>
+												<?php } ?>
+											</div><!-- /.product -->
+
+										</div><!-- /.products -->
+									</div><!-- /.item -->
+								<?php } ?>
+
+							</div><!-- /.home-owl-carousel -->
+						</div><!-- /.product-slider -->
+					</div>
+
+
+
+				</div>
 			</div>
+
+
+			<!-- ============================================== TABS ============================================== -->
+
+
+			<hr />
+
+			<!-- <?php #include('includes/brands-slider.php'); 
+					?> -->
 		</div>
-		<?php include('includes/footer.php'); ?>
+	</div>
+	<?php include('includes/footer.php'); ?>
 
-		<script src="assets/js/jquery-1.11.1.min.js"></script>
+	<script src="assets/js/jquery-1.11.1.min.js"></script>
 
-		<script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
 
-		<script src="assets/js/bootstrap-hover-dropdown.min.js"></script>
-		<script src="assets/js/owl.carousel.min.js"></script>
+	<script src="assets/js/bootstrap-hover-dropdown.min.js"></script>
+	<script src="assets/js/owl.carousel.min.js"></script>
 
-		<script src="assets/js/echo.min.js"></script>
-		<script src="assets/js/jquery.easing-1.3.min.js"></script>
-		<script src="assets/js/bootstrap-slider.min.js"></script>
-		<script src="assets/js/jquery.rateit.min.js"></script>
-		<script type="text/javascript" src="assets/js/lightbox.min.js"></script>
-		<script src="assets/js/bootstrap-select.min.js"></script>
-		<script src="assets/js/wow.min.js"></script>
-		<script src="assets/js/scripts.js"></script>
+	<script src="assets/js/echo.min.js"></script>
+	<script src="assets/js/jquery.easing-1.3.min.js"></script>
+	<script src="assets/js/bootstrap-slider.min.js"></script>
+	<script src="assets/js/jquery.rateit.min.js"></script>
+	<script type="text/javascript" src="assets/js/lightbox.min.js"></script>
+	<script src="assets/js/bootstrap-select.min.js"></script>
+	<script src="assets/js/wow.min.js"></script>
+	<script src="assets/js/scripts.js"></script>
 
-		<!-- For demo purposes – can be removed on production -->
+	<!-- For demo purposes – can be removed on production -->
 
-		<script src="switchstylesheet/switchstylesheet.js"></script>
+	<script src="switchstylesheet/switchstylesheet.js"></script>
 
-		<script>
-			$(document).ready(function() {
-				$(".changecolor").switchstylesheet({
-					seperator: "color"
-				});
-				$('.show-theme-options').click(function() {
-					$(this).parent().toggleClass('open');
-					return false;
-				});
+	<script>
+		$(document).ready(function() {
+			$(".changecolor").switchstylesheet({
+				seperator: "color"
 			});
-
-			$(window).bind("load", function() {
-				$('.show-theme-options').delay(2000).trigger('click');
+			$('.show-theme-options').click(function() {
+				$(this).parent().toggleClass('open');
+				return false;
 			});
-		</script>
-		<!-- For demo purposes – can be removed on production : End -->
+		});
+
+		$(window).bind("load", function() {
+			$('.show-theme-options').delay(2000).trigger('click');
+		});
+	</script>
+	<!-- For demo purposes – can be removed on production : End -->
 
 
 

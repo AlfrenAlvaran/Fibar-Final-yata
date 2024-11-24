@@ -20,7 +20,7 @@ if (isset($_Get['action'])) {
 				<div class="logo">
 					<a href="index.php">
 
-					<h3 style="color: #000; font-size: 24px; font-weight: bold; text-align: center; margin: 20px 0;">Dc Fiber & Chemical Trading</h3>
+						<h3 style="color: #000; font-size: 24px; font-weight: bold;  margin: 20px 0;">Dc Fiber & Chemical Trading</h3>
 					</a>
 				</div>
 			</div>
@@ -29,12 +29,11 @@ if (isset($_Get['action'])) {
 					<form name="search" method="post" action="search-result.php">
 						<div class="control-group">
 
-						<input class="search-field" 
-       placeholder="Search here..." 
-       name="product" 
-       required="required" 
-       style="padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; width: 100%; max-width: 400px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); transition: border-color 0.3s;" 
-/>
+							<input class="search-field"
+								placeholder="Search here..."
+								name="product"
+								required="required"
+								style="padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; width: 100%; max-width: 400px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); transition: border-color 0.3s;" />
 
 							<button class="search-button" type="submit" name="search"></button>
 
@@ -53,8 +52,8 @@ if (isset($_Get['action'])) {
 						<a href="#" class="dropdown-toggle lnk-cart" data-toggle="dropdown">
 							<div class="items-cart-inner">
 								<div class="total-price-basket">
-								<span class="lbl" style="font-weight: bold; color: black; font-size: 18px; margin-right: 5px;">cart -</span>									<span class="total-price">
-										<span class="sign">Rs.</span>
+									<span class="lbl" style="font-weight: bold; color: black; font-size: 18px; margin-right: 5px;">cart -</span> <span class="total-price">
+										<span class="sign">₱.</span>
 										<span class="value"><?php echo $_SESSION['tp']; ?></span>
 									</span>
 								</div>
@@ -97,7 +96,7 @@ if (isset($_Get['action'])) {
 												<div class="col-xs-7">
 
 													<h3 class="name"><a href="product-details.php?pid=<?php echo $row['id']; ?>"><?php echo $row['productName']; ?></a></h3>
-													<div class="price">Rs.<?php echo ($row['productPrice'] + $row['shippingCharge']); ?>*<?php echo $_SESSION['cart'][$row['id']]['quantity']; ?></div>
+													<div class="price">₱.<?php echo ($row['productPrice'] + $row['shippingCharge']); ?>*<?php echo $_SESSION['cart'][$row['id']]['quantity']; ?></div>
 												</div>
 
 											</div>
@@ -111,7 +110,7 @@ if (isset($_Get['action'])) {
 								<div class="clearfix cart-total">
 									<div class="pull-right">
 
-										<span class="text">Total :</span><span class='price'>Rs.<?php echo $_SESSION['tp'] = "$totalprice" . ".00"; ?></span>
+										<span class="text">Total :</span><span class='price'>₱.<?php echo $_SESSION['tp'] = "$totalprice" . ".00"; ?></span>
 
 									</div>
 
@@ -129,10 +128,10 @@ if (isset($_Get['action'])) {
 						<a href="#" class="dropdown-toggle lnk-cart" data-toggle="dropdown">
 							<div class="items-cart-inner">
 								<div class="total-price-basket">
-								<span class="lbl" style="font-weight: bold; color: black; font-size: 15px; margin-right: 5px;">cart -</span>									<span class="total-price">
+									<span class="lbl" style="font-weight: bold; color: black; font-size: 15px; margin-right: 5px;">cart -</span> <span class="total-price">
 
-								<span class="sign" style="font-size: 20px;">₱.</span>
-								<span class="value">00.00</span>
+										<span class="sign" style="font-size: 20px;">₱.</span>
+										<span class="value">00.00</span>
 									</span>
 								</div>
 								<div class="basket">
@@ -173,10 +172,6 @@ if (isset($_Get['action'])) {
 						</ul><!-- /.dropdown-menu-->
 					</div>
 				<?php } ?>
-
-
-
-
 				<!-- ============================================================= SHOPPING CART DROPDOWN : END============================================================= -->
 			</div><!-- /.top-cart-row -->
 		</div><!-- /.row -->
